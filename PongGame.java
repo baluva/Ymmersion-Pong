@@ -178,10 +178,32 @@ public class PongGame extends JPanel implements KeyListener, ActionListener {
     }
 
     private void endGame() {
+        timer.stop();        // Arrêter le jeu
+        bonusTimer.stop();   // Arrêter le timer des bonus/malus
+
         String winner = (ScoreP1 >= MAX_SCORE) ? "Player 1 wins!" : "Player 2 wins!";
-        JOptionPane.showMessageDialog(this, winner, "Game Over", JOptionPane.INFORMATION_MESSAGE);
-        timer.stop();  // Arrêter le jeu
-        bonusTimer.stop();  // Arrêter le timer des bonus/malus
+        int choix = JOptionPane.showConfirmDialog(this, winner + "\nRejouer une partie ?",
+                "Game Over", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choix == JOptionPane.YES_OPTION) {
+            restartGame();
+        } else {
+            System.exit(0);
+        }
+    }
+
+    // Réinitialise complètement la partie pour rejouer
+    private void restartGame() {
+        ScoreP1 = 0;
+        ScoreP2 = 0;
+        paddle1Y = 150;
+        paddle2Y = 150;
+        paddle1Height = 120;
+        paddle2Height = 120;
+        bonusActive = false;
+        resetBalls();
+        timer.start();
+        bonusTimer.start();
+        requestFocusInWindow();  // Reprendre le focus clavier
     }
 
     @Override
