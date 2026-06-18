@@ -12,6 +12,7 @@ graphique **Swing**, agrémenté d'un système de bonus/malus et de balles multi
   - 🟣 **Multiplication** — duplique les balles à l'écran
 - Accélération des balles à chaque rebond sur une raquette
 - **Fin de partie** au premier joueur à atteindre 10 points
+- Proposition de **rejouer** en fin de partie (réinitialise scores, balles et raquettes)
 
 ## 🎮 Commandes
 
